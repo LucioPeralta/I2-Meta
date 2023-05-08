@@ -1,5 +1,5 @@
 from pytube import YouTube
-import time
+from pytube import exceptions
 
 class Video:
     
@@ -11,15 +11,16 @@ class Video:
         self.video = YouTube(self.url_video, 
                              on_complete_callback=self.complete_download, 
                              on_progress_callback=self.progress_download
-                             )
-        
+                             )        
         try:
             self.video.streams
-        except VideoUnavailable: #url inexistente
+        except exceptions.VideoUnavailable: #url inexistente
             print("Url inexistente")
 
     
-    def download_video(self, higher_quality: bool):
+    def download_video(self, 
+                       higher_quality: bool, 
+                       download_path=None):
         # Este condicional es provisional, porque mejor seria tener una lista de resoluciones
         # y seleccionar el que deseemos
         if higher_quality:
@@ -27,7 +28,9 @@ class Video:
         else:
             stream = self.video.streams.get_lowest_resolution()
         
-        print("antes de descargar")
+        if download_path:
+            stream.download(output_path=download_path)
+            return
         stream.download()
 
 
@@ -44,7 +47,6 @@ class Video:
     
     def get_qualities_video(self):
         qualities = []
-
 
         for stream in self.video.streams.filter(file_extension='mp4'):
             res = stream.resolution
