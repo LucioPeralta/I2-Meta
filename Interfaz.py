@@ -42,11 +42,11 @@ root.configure(bg="#F7F3E3")
 entry_url = EntryWithPlaceholder(root, placeholder="Ingrese la URL", width=35, bg='#6FB8EC')
 entry_nombre = EntryWithPlaceholder(root, placeholder="Ingrese el nombre del archivo", width=35, bg='#6FB8EC')
 label_directorio = ttk.Label(root, text="Seleccione el directorio", width=25, background='#6FB8EC')
-##Cambiar el color del texto del label
+##Cambiar el color del texto del label.
 directorio_button = tk.Button(root, text="Explorar", command=explorar_directorio, width=6, bg='#6FB8EC', fg='#F7F3E3')
 label_calidad = ttk.Label(root, text="Calidad:", background='#F7F3E3')
 calidades = ["Baja", "Media", "Alta"]
-##Cambiar el color del desplegable
+##Cambiar el color del desplegable.
 var_calidad = tk.StringVar(root)
 var_calidad.set(calidades[0])
 option_calidad = tk.OptionMenu(root, var_calidad, *calidades)
@@ -56,7 +56,7 @@ var_tipo = tk.StringVar()
 var_tipo.set("video")
 radio_video = ttk.Radiobutton(root, text="Video", variable=var_tipo, value="video")
 radio_audio = ttk.Radiobutton(root, text="Audio", variable=var_tipo, value="audio")
-##Cambiar los fondos de los radiobutton
+##Cambiar los fondos de los radiobutton.
 button_descargar = ttk.Button(root, text="Descargar", style='my.TButton')
 
 # Estilos
