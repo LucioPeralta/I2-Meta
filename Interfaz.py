@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 from idlelib.tooltip import Hovertip
+from main import Descarga_general
 
 class EntryWithPlaceholder(tk.Entry):
     def __init__(self, master=None, placeholder="", color='#471F6F', *args, **kwargs):
@@ -57,7 +58,7 @@ var_tipo.set("video")
 radio_video = ttk.Radiobutton(root, text="Video", variable=var_tipo, value="video")
 radio_audio = ttk.Radiobutton(root, text="Audio", variable=var_tipo, value="audio")
 ##Cambiar los fondos de los radiobutton.
-button_descargar = ttk.Button(root, text="Descargar", style='my.TButton')
+button_descargar = ttk.Button(root, command=lambda: Descarga_general(entry_url.get(), entry_nombre.get(), var_tipo.get()),text="Descargar", style='my.TButton', width=10)
 
 # Estilos
 style = ttk.Style()
@@ -75,5 +76,4 @@ radio_video.place(x=110, y=180)
 radio_audio.place(x=200, y=180)
 button_descargar.place(x=150, y=220)
 
-# Inicio
 root.mainloop()
