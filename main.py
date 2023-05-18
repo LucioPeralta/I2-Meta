@@ -8,8 +8,9 @@ from Interfaz import *
 
 def descargar_video(url, titulo):
     video = YouTube(url)
+    
     filename = titulo + ".mp4"
-    stream = video.streams.get_highest_resolution()
+    stream = video.streams.get_Quality()
     stream.download(output_path=Path.cwd(), filename=filename)
     print(f"EL {filename} de la url {url} se ha descargado correctamente. ")
     return filename

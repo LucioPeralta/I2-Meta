@@ -8,10 +8,9 @@ class Video:
         self.fetch_video()
 
     def fetch_video(self):
-        self.video = YouTube(self.url_video, 
-                             on_complete_callback=self.complete_download, 
-                             on_progress_callback=self.progress_download
-                             )        
+        if self.url_video == "":
+            return None
+        self.video = YouTube(self.url_video, on_complete_callback=self.complete_download, on_progress_callback=self.progress_download)        
         try:
             self.video.streams
         except exceptions.VideoUnavailable: #url inexistente
@@ -48,10 +47,12 @@ class Video:
     def get_qualities_video(self):
         qualities = []
 
+        print(self.video.streams)
         for stream in self.video.streams.filter(file_extension='mp4'):
             res = stream.resolution
             if res not in qualities and res != None:
                 qualities.append(stream.resolution)
+        print(qualities)
         return qualities
 
 

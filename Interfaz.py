@@ -3,6 +3,9 @@ from tkinter import ttk
 from tkinter import filedialog
 from idlelib.tooltip import Hovertip
 from main import Descarga_general
+from classes.video import Video
+
+calidades = ["0"]
 
 class EntryWithPlaceholder(tk.Entry):
     def __init__(self, master=None, placeholder="", color='#DBEDFA', *args, **kwargs):
@@ -40,7 +43,8 @@ root.resizable(False, False)
 root.configure(bg="#35355A")
 
 # Widgets
-entry_url = EntryWithPlaceholder(root, placeholder="Ingrese la URL", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
+url_update = tk.StringVar()
+entry_url = EntryWithPlaceholder(root, textvariable=url_update, placeholder="Ingrese la URL", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
 
 entry_nombre = EntryWithPlaceholder(root, placeholder="Ingrese el nombre del archivo", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
 
@@ -49,7 +53,7 @@ directorio_button = tk.Button(root, text="Explorar", command=explorar_directorio
 directorio_button.config(activebackground='#DBEDFA', activeforeground='#471F6F')
 
 label_calidad = ttk.Label(root, text="Calidad:",background='#35355A', foreground="#DBEDFA")
-calidades = ["Baja", "Media", "Alta"]
+calidades = calidades
 var_calidad = tk.StringVar(root)
 var_calidad.set(calidades[0])
 option_calidad = tk.OptionMenu(root, var_calidad, *calidades)
@@ -79,5 +83,17 @@ label_formato.place(x=20, y=180)
 radio_video.place(x=110, y=180)
 radio_audio.place(x=200, y=180)
 button_descargar.place(x=150, y=220)
+
+def update(*args):
+    calidades = Video(url_update.get()).get_qualities_video()
+    var_calidad.set(calidades[0])
+    option_calidad.option_clear()
+    menu = option_calidad["menu"]
+    for i in range(menu.index("end")):
+        menu.delete(i)
+    for string in calidades:
+        menu.add_command(label=string, command=lambda value=string: var_calidad.set(value))
+    print("Updt")
+url_update.trace_add("write", update)
 
 root.mainloop()
