@@ -4,7 +4,7 @@ from tkinter import filedialog
 from main import Descarga_general, buscar_video
 from classes.video import Video
 
-calidades = ["0"]
+calidades = [""]
 
 class EntryWithPlaceholder(tk.Entry):
     def __init__(self, master=None, placeholder="", color='#DBEDFA', *args, **kwargs):
@@ -42,9 +42,11 @@ root.configure(bg="#35355A")
 
 # Widgets
 url_update = tk.StringVar()
-entry_url = EntryWithPlaceholder(root, textvariable=lambda: print("saad"), placeholder="Ingrese la URL", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
+entry_url = EntryWithPlaceholder(root, textvariable=lambda: print("saad"), placeholder="Ingrese la URL", width=25, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
+
 button_buscar = tk.Button(root, command=lambda: buscar_video(entry_url.get(), agregarCualidadesOptionMenu),text="Buscar", width=6, bg='#444474', fg='#DBEDFA', highlightthickness=0)
 button_buscar.config(activebackground='#DBEDFA', activeforeground='#471F6F')
+
 entry_nombre = EntryWithPlaceholder(root, placeholder="Ingrese el nombre del archivo", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
 
 label_directorio = ttk.Label(root, text="Seleccione el directorio", width=25, background='#35355A', foreground="#DBEDFA")
@@ -72,7 +74,7 @@ button_descargar.config(width=10, background='#DBEDFA', foreground='#444474',act
 style_rb = ttk.Style()
 style_rb.configure('RB.TRadiobutton', foreground='#444474', background='#DBEDFA')
 # Posiciones
-entry_url.place(x=15, y=10)
+entry_url.place(x=15, y=13)
 entry_nombre.place(x=15, y=50)
 label_directorio.place(x=15, y=90)
 directorio_button.place(x=282, y=87)
