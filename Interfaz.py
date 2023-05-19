@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
-from idlelib.tooltip import Hovertip
-from main import Descarga_general
+from main import Descarga_general, buscar_video
 from classes.video import Video
 
 calidades = ["0"]
@@ -30,7 +29,6 @@ class EntryWithPlaceholder(tk.Entry):
 def explorar_directorio():
     directorio = filedialog.askdirectory()
     label_directorio["text"] = directorio
-    Hovertip(label_directorio, directorio)
     if directorio == "":
         label_directorio["text"] = "Seleccione el directorio"
 
@@ -44,8 +42,9 @@ root.configure(bg="#35355A")
 
 # Widgets
 url_update = tk.StringVar()
-entry_url = EntryWithPlaceholder(root, textvariable=url_update, placeholder="Ingrese la URL", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
-
+entry_url = EntryWithPlaceholder(root, textvariable=lambda: print("saad"), placeholder="Ingrese la URL", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
+button_buscar = tk.Button(root, command=lambda: buscar_video(entry_url.get(), agregarCualidadesOptionMenu),text="Buscar", width=6, bg='#444474', fg='#DBEDFA', highlightthickness=0)
+button_buscar.config(activebackground='#DBEDFA', activeforeground='#471F6F')
 entry_nombre = EntryWithPlaceholder(root, placeholder="Ingrese el nombre del archivo", width=35, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
 
 label_directorio = ttk.Label(root, text="Seleccione el directorio", width=25, background='#35355A', foreground="#DBEDFA")
@@ -67,7 +66,7 @@ radio_video = ttk.Radiobutton(root, text="Video", variable=var_tipo, value="vide
 radio_audio = ttk.Radiobutton(root, text="Audio", variable=var_tipo, value="audio", style='RB.TRadiobutton')
 
 ##Cambiar los fondos de los radiobutton.
-button_descargar = tk.Button(root, command=lambda: Descarga_general(entry_url.get(), entry_nombre.get(), var_tipo.get()),text="Descargar")
+button_descargar = tk.Button(root, command=lambda: Descarga_general(entry_url.get(), entry_nombre.get(), var_tipo.get(), var_calidad.get()),text="Descargar")
 button_descargar.config(width=10, background='#DBEDFA', foreground='#444474',activebackground='#444474', activeforeground='#DBEDFA')
 # Estilos
 style_rb = ttk.Style()
@@ -83,9 +82,18 @@ label_formato.place(x=20, y=180)
 radio_video.place(x=110, y=180)
 radio_audio.place(x=200, y=180)
 button_descargar.place(x=150, y=220)
+button_buscar.place(x=282, y=10)
 
+def agregarCualidadesOptionMenu(calidades: list):
+    option_calidad["menu"].delete(0, "end")
+    for calidad in calidades:
+        option_calidad["menu"].add_command(label=calidad, command=lambda value=calidad: var_calidad.set(value))
+"""
 def update(*args):
-    calidades = Video(url_update.get()).get_qualities_video()
+    video = Video(url_update.get())
+    calidades = video.get_qualities_video()
+    # calidades = Video(url_update.get()).get_qualities_video()
+    # calidades.remove("")
     var_calidad.set(calidades[0])
     option_calidad.option_clear()
     menu = option_calidad["menu"]
@@ -93,7 +101,7 @@ def update(*args):
         menu.delete(i)
     for string in calidades:
         menu.add_command(label=string, command=lambda value=string: var_calidad.set(value))
-    print("Updt")
-url_update.trace_add("write", update)
+        
+url_update.trace_add("write", update)"""
 
 root.mainloop()

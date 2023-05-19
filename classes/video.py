@@ -17,42 +17,28 @@ class Video:
             print("Url inexistente")
 
     
-    def download_video(self, 
-                       higher_quality: bool, 
-                       download_path=None):
-        # Este condicional es provisional, porque mejor seria tener una lista de resoluciones
-        # y seleccionar el que deseemos
-        if higher_quality:
-            stream = self.video.streams.get_highest_resolution()
-        else:
-            stream = self.video.streams.get_lowest_resolution()
-        
-        if download_path:
-            stream.download(output_path=download_path)
-            return
-        stream.download()
+    def download_video(self, quality: str, path: str, filename: str):
+        stream = self.video.streams.filter(res=quality).first()
+        stream.download(output_path=path, filename=filename)
 
-
-    def download_audio(self):
+    def download_audio(self, path, filename):
         stream = self.video.streams.get_audio_only()
-        stream.download()
+        stream.download(output_path=path, filename=filename)
 
     def complete_download(self, streams, filepath):
         print("Descarga finalizada")
 
     def progress_download(self, streams, chunks, bytes_remaining):
-        print("a")
+        print("")
         #no anda xd 
     
     def get_qualities_video(self):
         qualities = []
 
-        print(self.video.streams)
         for stream in self.video.streams.filter(file_extension='mp4'):
             res = stream.resolution
             if res not in qualities and res != None:
                 qualities.append(stream.resolution)
-        print(qualities)
         return qualities
 
 
