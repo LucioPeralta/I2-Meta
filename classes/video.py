@@ -19,7 +19,9 @@ class Video:
     
     def download_video(self, quality: str, path: str, filename: str):
         stream = self.video.streams.filter(res=quality).first()
+        print(stream)
         stream.download(output_path=path, filename=filename)
+
 
     def download_audio(self, path, filename):
         stream = self.video.streams.get_audio_only()
@@ -28,9 +30,6 @@ class Video:
     def complete_download(self, streams, filepath):
         print("Descarga finalizada")
 
-    def progress_download(self, streams, chunks, bytes_remaining):
-        print("")
-        #no anda xd 
     
     def get_qualities_video(self):
         qualities = []
@@ -56,6 +55,3 @@ class Video:
     
     def get_publish_date(self):
         return self.video.publish_date
-    
-
-
