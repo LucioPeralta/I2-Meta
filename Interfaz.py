@@ -68,7 +68,7 @@ radio_video = ttk.Radiobutton(root, text="Video", variable=var_tipo, value="vide
 radio_audio = ttk.Radiobutton(root, text="Audio", variable=var_tipo, value="audio", style='RB.TRadiobutton')
 
 ##Cambiar los fondos de los radiobutton.
-button_descargar = tk.Button(root, command=lambda: Descarga_general(entry_url.get(), entry_nombre.get(), var_tipo.get(), var_calidad.get()),text="Descargar")
+button_descargar = tk.Button(root, command=lambda: Descarga_general(entry_url.get(), entry_nombre.get(), var_tipo.get(), var_calidad.get(), label_directorio['text']),text="Descargar")
 button_descargar.config(width=10, background='#DBEDFA', foreground='#444474',activebackground='#444474', activeforeground='#DBEDFA')
 # Estilos
 style_rb = ttk.Style()
