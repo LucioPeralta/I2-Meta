@@ -37,12 +37,13 @@ def explorar_directorio():
 root = tk.Tk()
 root.geometry("400x300")
 root.title("I2meta")
-root.resizable(False, False)
+root.resizable(True, True)
 root.configure(bg="#35355A")
 
 # Widgets
 url_update = tk.StringVar()
 entry_url = EntryWithPlaceholder(root, textvariable=lambda: print("saad"), placeholder="Ingrese la URL", width=25, bg='#444474', highlightthickness=0, foreground='#DBEDFA')
+
 
 button_buscar = tk.Button(root, command=lambda: buscar_video(entry_url.get(), agregarCualidadesOptionMenu),text="Buscar", width=6, bg='#444474', fg='#DBEDFA', highlightthickness=0)
 button_buscar.config(activebackground='#DBEDFA', activeforeground='#471F6F')
