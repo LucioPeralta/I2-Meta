@@ -10,26 +10,13 @@ class Video:
     def fetch_video(self):
         if self.url_video == "":
             return None
-        self.video = YouTube(self.url_video, on_complete_callback=self.complete_download, on_progress_callback=self.progress_download)        
-        try:
-            self.video.streams
-        except exceptions.VideoUnavailable: #url inexistente
-            print("Url inexistente")
-
+        self.video = YouTube(self.url_video)        
+        self.video.streams
     
     def download_video(self, quality: str, path: str, filename: str):
         stream = self.video.streams.filter(res=quality).first()
         print(stream)
         stream.download(output_path=path, filename=filename)
-
-
-    def download_audio(self, path, filename):
-        stream = self.video.streams.get_audio_only()
-        stream.download(output_path=path, filename=filename)
-
-    def complete_download(self, streams, filepath):
-        print("Descarga finalizada")
-
     
     def get_qualities_video(self):
         qualities = []
@@ -39,7 +26,6 @@ class Video:
             if res not in qualities and res != None:
                 qualities.append(stream.resolution)
         return qualities
-
 
     def get_title(self):
         self.video.title

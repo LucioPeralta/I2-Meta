@@ -4,8 +4,6 @@ from tkinter import messagebox as MessageBox
 from pathlib import Path
 from Interfaz import *
 
-import traceback
-
 
 
 def descargar_video(url, titulo, calidad, directorio):
@@ -24,6 +22,7 @@ def descargar_audio(url , titulo, directorio):
 
 def buscar_video(url: str, funcion):
     if not "https://www.youtube.com/watch?v=" in url:
+        MessageBox.showerror("Error", f"Necesita añadir una url de algun video de youtube")
         return None
     video = Video(url)
     funcion(video.get_qualities_video())
@@ -42,6 +41,5 @@ def Descarga_general(url, titulo, tipo, calidad, directorio):
             MessageBox.showinfo("Descarga completa", f"El archivo de audio {filename} se ha descargado correctamente.")
         except Exception as e:
             MessageBox.showerror("Error", f"Se ha producido un error al descargar el archivo de audio: {str(e)}")
-            traceback.print_exc()
     else:
         MessageBox.showwarning("Seleccion invalida", "Por favor seleccione el tipo de archivo que desea descargar.")
