@@ -108,4 +108,3 @@ def update(*args):
 url_update.trace_add("write", update)"""
 
 root.mainloop()
->>>>>>> develop
