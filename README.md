@@ -30,10 +30,14 @@
 paste the following line on bash:  
 
 ```bash
-pip install git+https://github.com/pytube/pytube
+pipenv install 
 ```  
 
 >And to install [Tkinter](https://docs.python.org/3/library/tkinter.html) paste the folowing line:
+
+```bash
+pipenv shell
+```
 
 ```bash
 sudo apt-get install python3-tk
@@ -44,7 +48,7 @@ sudo apt-get install python3-tk
 - If when downloading you get the "KeyGen" error, do the following: 
 
 ```bash
-cd /home/USER/.local/lib/python3.10/site-packages/pytube
+cd /home/USER/.local/share/virtualenvs/NOMBRE-ENTORNO/lib/python3.10/site-packages/pytube
 ```   
 
 >then put:  
