@@ -8,10 +8,18 @@ class Video:
         self.fetch_video()
 
     def fetch_video(self):
-        if self.url_video == "":
-            return None
-        self.video = YouTube(self.url_video)        
-        self.video.streams
+        self.video = YouTube(self.url_video)
+        try:
+            self.video.streams
+        except exceptions.RegexMatchError:
+            raise ErrorVideo("Url no reconocida")
+        except exceptions.VideoUnavailable:
+            raise ErrorVideo("Video no disponible")
+        except exceptions.VideoPrivate:
+            raise ErrorVideo("Video privado. No disponible para descargar")
+        except exceptions.ExtractError:
+            raise ErrorVideo("Error al extraer informacion del video")
+        
     
     def download_video(self, quality: str, path: str, filename: str):
         stream = self.video.streams.filter(res=quality).first()
