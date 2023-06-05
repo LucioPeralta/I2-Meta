@@ -31,12 +31,15 @@ class Video:
 
         for stream in self.video.streams.filter(file_extension='mp4'):
             res = stream.resolution
-            if res not in qualities and res != None:
-                qualities.append(stream.resolution)
+            if res not in qualities and res is not None:
+                qualities.append(res)
+
+        qualities.sort()  # Ordenar la lista en orden ascendente
+
         return qualities
 
     def get_title(self):
-        self.video.title
+        return self.video.title
     
     def get_url_miniature(self):
         return self.video.thumbnail_url

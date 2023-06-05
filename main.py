@@ -14,7 +14,7 @@ def descargar_video(url, titulo, calidad, directorio):
     return filename
 
 
-def descargar_audio(url , titulo, directorio):
+def descargar_audio(url, titulo, directorio):
     video = Video(url)
     filename = titulo+".mp4" if titulo else video.get_title()+".mp4"
     video.download_audio(directorio, filename)
