@@ -7,24 +7,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>I2mate</h1>
-        
+        <h1>I2meta</h1>
+
+        <form class="form_download"></form>
         <form class="search-form" method="POST" action="/">
             <input type="text" class="search-input" placeholder="URL" name="input_url" >
-            <button type="submit" class="search-button">Buscar</button> 
-        </form>
-        
-        <form class="form-group">
-            <input type="text" id="name" name="name" placeholder="Nombre" value="{{nombre}}">
-            <input type="file" class="custom-file-upload" value="Ruta" title="">
-            <label for="file">{{ruta}}</label>
-            
+            <button type="submit" class="search-button" value="Buscar">Buscar</button> 
+            <input type="text" id="name" name="name" placeholder="Nombre" value="{{nombre}}">            
         </form>
         
         <form class="form-data">
             <div class="radio-group">
                 <label class="radio-label">
-                    <input type="radio" id="video" name="format" value="video">
+                    <input type="radio" id="video" name="format" value="video" {{formato}}>
                     Video
                 </label>
                 <label class="radio-label">
@@ -35,14 +30,17 @@
             <div class="quality-select">
                 <label for="quality">Calidad </label>
                 <select id="quality" name="quality">
-                    <option value="alta">Alta</option>
-                    <option value="media">Media</option>
-                    <option value="baja">Baja</option>
+                    {% for calidad in calidades %}
+                    <option value="{{ calidad }}">{{ calidad }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </form>
-        
-
+        <div class="miniatura">
+            <img src="{{miniatura}}" alt="">
+        </div>
+            <button type="submit" class="download_button" value="Descargar">Descargar</button>
+        </form>
     </div>
 </body>
 </html>
