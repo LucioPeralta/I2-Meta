@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I2mate - Template 1</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>I2mate</h1>
+        
+        <form class="search-form" method="POST" action="/">
+            <input type="text" class="search-input" placeholder="URL" name="input_url" >
+            <button type="submit" class="search-button">Buscar</button> 
+        </form>
+        
+        <form class="form-group">
+            <input type="text" id="name" name="name" placeholder="Nombre" value="{{nombre}}">
+            <input type="file" class="custom-file-upload" value="Ruta" title="">
+            <label for="file">{{ruta}}</label>
+            
+        </form>
+        
+        <form class="form-data">
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" id="video" name="format" value="video">
+                    Video
+                </label>
+                <label class="radio-label">
+                    <input type="radio" id="audio" name="format" value="audio">
+                    Audio
+                </label>
+            </div>
+            <div class="quality-select">
+                <label for="quality">Calidad </label>
+                <select id="quality" name="quality">
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+            </div>
+        </form>
+        
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+*{
+    background-color: #0A192F;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #FFFFFF;
+}
+
+h1 {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.search-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-input {
+    background-color: #FFFFFF;
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border: 3px solid #FFFFFF;
+    border-radius: 15px 0 0 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #1565C0;
+}
+
+.search-button {
+    padding: 13px 20px;
+    font-size: 16px;
+    background-color: #1565C0;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover,
+.search-button:focus {
+    background-color: #FFFFFF;
+    color: #0A192F;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+
+.form-group #name{
+    background-color: #FFFFFF;
+    margin: 0 0 0 17px;
+    width: 89%;
+    padding: 10px;
+    font-size: 16px;
+    border: 3px solid #FFFFFF;
+    border-radius: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group #name:focus{
+    border-color: #1565C0;
+}
+
+.form-data{
+    margin-top: -10px;
+    display: flex;
+}
+
+.form-data .radio-group {
+    justify-content: left;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.form-data .radio-label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.form-data .quality-select {
+    font-weight: bold;
+    justify-content: end;
+    margin-left: 40px;
+}
+
+.form-data .quality-select #quality{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #1565C0;
+    color: #FFFFFF;
+    border-radius: 15px;
+    border: none;
+    transition: all 0.3s;
+}
+
+.form-data .quality-select #quality:hover{
+    background-color: #FFFFFF;
+    color: #0A192F;
+    transition: all 0.3s;
+}
+
+.form-data .quality-select #quality option{
+    background-color: #ffffff;
+    color: #0A192F;
+}
+
+.form-data .quality-select #quality option:hover{
+    background-color: #1565C0;
+    color: #FFFFFF;
+}
+.form-group .custom-file-upload {
+    margin: 19px;
+    display: inline-block;
+    padding: 13px 10px;
+    font-size: 16px;
+    background-color: #1565C0;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-group .custom-file-upload:hover,
+.form-group .custom-file-upload:focus {
+    background-color: #FFFFFF;
+    color: #0A192F;
+}
