@@ -22,25 +22,23 @@
 ### *Libraries*
 
 >Our main library is [pytube](https://pytube.io/en/latest/)
->And our secondary library is [tkinter](https://docs.python.org/3/library/tkinter.html)
+>And our secondary library is [flask](https://flask.palletsprojects.com/en/2.3.x/)
 
 ### *Instalation*
 
->To install [pytube](https://pytube.io/en/latest/)
-paste the following line on bash:  
+>To install the virtual environment do the following:
 
 ```bash
 pipenv install 
 ```  
-
->And to install [Tkinter](https://docs.python.org/3/library/tkinter.html) paste the folowing line:
-
 ```bash
 pipenv shell
 ```
 
+### *Execution*
+
 ```bash
-sudo apt-get install python3-tk
+python3 app.py
 ```
 
 ### *Possible problems:*
