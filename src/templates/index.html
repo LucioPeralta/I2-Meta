@@ -3,7 +3,7 @@
 <head>
     <title>I2mate - Template 1</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </head>
 <body>
     <div class="container">
@@ -19,22 +19,23 @@
         <form class="form-data">
             <div class="radio-group">
                 <label class="radio-label"> 
-                    <input type="radio" id="video" name="format" value="video" {{formato}}>
+                    <input type="radio" id="video" name="format" value="video" onchange="updateSelect(this.value)" {{formato}}>
                     Video
                 </label>
                 <label class="radio-label">
-                    <input type="radio" id="audio" name="format" value="audio">
+                    <input type="radio" id="audio" name="format" value="audio" onchange="updateSelect(this.value)">
                     Audio
                 </label>
             </div>
             <div class="quality-select">
                 <label for="quality">Calidad </label>
                 <select id="quality" name="quality">
-                    {% for calidad in calidades %}
+                    {% for calidad in calidades_video %}
                     <option value="{{ calidad }}">{{ calidad }}</option>
                     {% endfor %}
                 </select>
             </div>
+            <input id="quality_hidden" type="hidden" value="{% for calidad in calidades_audio %} {{ calidad }} {% endfor %}">
         </form>     
         <div class="miniatura">
             <img src="{{miniatura}}" alt="">

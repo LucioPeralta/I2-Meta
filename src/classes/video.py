@@ -1,5 +1,6 @@
 from pytube import YouTube
 from pytube import exceptions
+from src.classes.error_descarga import ErrorVideo
 
 class Video:
     
@@ -23,19 +24,36 @@ class Video:
     
     def download_video(self, quality: str, path: str, filename: str):
         stream = self.video.streams.filter(res=quality).first()
-        print(stream)
         stream.download(output_path=path, filename=filename)
+
     
     def get_qualities_video(self):
         qualities = []
+        streams = self.video.streams.filter(type="video")
 
-        for stream in self.video.streams.filter(file_extension='mp4'):
+        for stream in streams:
             res = stream.resolution
             if res not in qualities and res is not None:
                 qualities.append(res)
 
         qualities.sort()  # Ordenar la lista en orden ascendente
 
+        return qualities
+
+    def get_qualities_audio(self):
+        audio_streams = []
+        for stream in self.video.streams.all():
+            if stream.type == "audio":
+                audio_streams.append(stream)
+
+        qualities = []
+
+        for stream in audio_streams:
+            res = stream.abr
+            if res not in qualities and res is not None:
+                qualities.append(res)
+
+        qualities.sort(key=lambda x: int(x[:-4]))  # Ordenar la lista en orden ascendente
         return qualities
 
     def get_title(self):

@@ -19,8 +19,15 @@ def Search():
     youtube = Video(url)
     
     title = youtube.get_title()
-    calidades = youtube.get_qualities_video()
+    calidades_video = youtube.get_qualities_video()
+    calidades_audio = youtube.get_qualities_audio()
     url_img = youtube.get_url_miniature()
 
-    return render_template('index.html', video=youtube, titulo=title, calidades=calidades, miniatura=url_img, formato="checked")
+    return render_template('index.html', 
+                           video=youtube, 
+                           titulo=title, 
+                           calidades_video=calidades_video,
+                           calidades_audio=calidades_audio, 
+                           miniatura=url_img, 
+                           formato="checked")
     
