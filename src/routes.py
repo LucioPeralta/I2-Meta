@@ -10,7 +10,7 @@ app_routes = Blueprint('app_routes', __name__)
 @app_routes.route("/", methods=['GET'])
 def Home():
     miniatura = "../static/Miniatura.png"
-    return render_template('index.html', miniatura=miniatura, aux=1)
+    return render_template('index.html', miniatura=miniatura)
     
 
 @app_routes.route("/", methods=["POST"])
