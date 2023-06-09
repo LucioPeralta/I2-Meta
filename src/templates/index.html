@@ -9,37 +9,38 @@
     <div class="container">
         <h1>I2meta</h1>
 
-        <form class="form_download"></form>
-        <form class="search-form" method="POST" action="/">
+        <form action="{{url_for('app_routes.accion', action = aux)}}" class="search-form" method="POST">
             <input type="text" class="search-input" placeholder="URL" name="input_url" >
-            <button type="submit" class="search-button" value="Buscar">Buscar</button> 
-            <input type="text" id="name" name="name" placeholder="Nombre" value="{{ titulo }}">            
+            <button type="submit" class="search-button" value="Buscar" name="Buscar">Buscar</button> 
         </form>
         
         <form class="form-data">
-            <div class="radio-group">
-                <label class="radio-label"> 
-                    <input type="radio" id="video" name="format" value="video" {{formato}}>
-                    Video
-                </label>
-                <label class="radio-label">
-                    <input type="radio" id="audio" name="format" value="audio">
-                    Audio
-                </label>
-            </div>
-            <div class="quality-select">
-                <label for="quality">Calidad </label>
-                <select id="quality" name="quality">
-                    {% for calidad in calidades %}
-                    <option value="{{ calidad }}">{{ calidad }}</option>
-                    {% endfor %}
-                </select>
+            <input type="text" id="name" name="name" placeholder="Nombre" value="{{ titulo }}">   
+            <div class="div_flex">
+                <div class="radio-group">
+                    <label class="radio-label"> 
+                        <input type="radio" id="video" name="format" value="video" {{formato}}>
+                        Video
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" id="audio" name="format" value="audio">
+                        Audio
+                    </label>
+                </div>
+                <div class="quality-select">
+                    <label for="quality">Calidad </label>
+                    <select id="quality" name="quality">
+                        {% for calidad in calidades %}
+                        <option value="{{ calidad }}">{{ calidad }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
         </form>     
         <div class="miniatura">
             <img src="{{miniatura}}" alt="">
         </div>
-            <button type="submit" class="download_button" value="Descargar">Descargar</button>
+            <button type="submit" class="download_button" value="Descargar" name="Descargar">Descargar</button>
         </form>
 
     </div>

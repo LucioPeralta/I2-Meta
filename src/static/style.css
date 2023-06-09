@@ -56,7 +56,7 @@ h1 {
 
 #name{
     background-color: #FFFFFF;
-    margin: 20px 0 30px 3px;
+    margin: 20px 0 30px 15px;
     width: 89%;
     padding: 10px;
     font-size: 16px;
@@ -72,14 +72,15 @@ h1 {
 
 .form-data{
     margin-top: -10px;
-    display: flex;
 }
 
-.form-data .radio-group {
-    justify-content: left;
-    margin-left: 20px;
+.div_flex{
     display: flex;
+    justify-content: space-around;
     align-items: center;
+}
+.form-data .radio-group {
+    margin-left: 20px;
 }
 
 .form-data .radio-label {
@@ -89,7 +90,6 @@ h1 {
 
 .form-data .quality-select {
     font-weight: bold;
-    justify-content: end;
     margin-left: 40px;
 }
 
