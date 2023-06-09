@@ -46,6 +46,10 @@ def download():
         if formato == "video":
             video.download_video(filename=name+".mp4", path="download/", quality=calidad)
             return send_file(path_or_file=f"./download/{name}.mp4" , as_attachment=True)
-        return "video"
+        elif formato == "audio":
+            video.download_audio(filename=name+".mp3", path="download/", quality=calidad)
+            return send_file(path_or_file=f"./download/{name}.mp3" , as_attachment=True)
+        else:
+            return redirect(url_for("app_routes.Home"))
     except:
         return redirect(url_for("app_routes.Home"))

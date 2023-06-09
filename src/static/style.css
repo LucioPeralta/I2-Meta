@@ -137,6 +137,7 @@ h1 {
 }
 
 .download_button{
+    cursor: pointer;
     text-align: center;
     border: none;
     border-radius: 15px;

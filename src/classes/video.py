@@ -20,7 +20,10 @@ class Video:
             raise ErrorVideo("Video privado. No disponible para descargar")
         except exceptions.ExtractError:
             raise ErrorVideo("Error al extraer informacion del video")
-        
+    
+    def download_audio(self, quality: str, path: str, filename: str):
+        stream = self.video.streams.filter(abr=quality).first()
+        stream.download(output_path=path, filename=filename)
     
     def download_video(self, quality: str, path: str, filename: str):
         stream = self.video.streams.filter(res=quality).first()
